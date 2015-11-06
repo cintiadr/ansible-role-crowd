@@ -1,0 +1,7 @@
+---
+# test file for crowd
+
+- hosts: localhost
+  remote_user: root
+  roles:
+    - ansible-role-crowd

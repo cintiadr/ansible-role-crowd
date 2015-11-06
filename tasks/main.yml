@@ -1,0 +1,62 @@
+---
+# tasks file for crowd
+
+- name: create system user
+  user:
+    name={{ crowd_user }}
+    password={{ crowd_pass }}
+    home={{ crowd_home }}
+    system=yes
+    shell=/bin/bash
+  tags: crowd
+
+- name: prepare directory
+  file:
+    path={{ item }}
+    owner={{ crowd_user }}
+    group={{ crowd_user }}
+    state=directory
+    mode=0755
+  with_items:
+    - "{{ crowd_catalina }}"
+  tags: crowd
+
+- name: download package
+  get_url:
+    url={{ crowd_url }}
+    dest={{ crowd_archive }}
+    sha256sum={{ crowd_sha256 }}
+  tags: crowd
+
+- name: unarchive package
+  shell: tar zxvf {{ crowd_archive }} -C {{ crowd_catalina }} --strip-components=1; chown -Rf {{ crowd_user }}:{{ crowd_user }} {{ crowd_catalina }}
+  args:
+    creates: "{{ crowd_catalina }}/start_crowd.sh"
+  tags: crowd
+
+- name: copy templates
+  template:
+    src="{{ item }}.j2"
+    dest="/{{ item }}"
+    owner={{ crowd_user }}
+    group={{ crowd_user }}
+    mode=0644
+  with_items:
+    - etc/init.d/crowd
+    - usr/share/crowd/apache-tomcat/bin/setenv.sh
+    - usr/share/crowd/apache-tomcat/conf/server.xml
+  tags: crowd
+
+- name: prepare service script
+  file:
+    path=/etc/init.d/crowd
+    owner=root
+    group=root
+    state=file
+    mode=0755
+  tags: crowd
+
+- name: enable service
+  service: name=crowd enabled=yes
+  notify: restart crowd
+  tags: crowd

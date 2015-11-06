@@ -1,0 +1,5 @@
+---
+# handlers file for crowd
+
+- name: restart crowd
+  service: name=crowd state=restarted

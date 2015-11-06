@@ -1,0 +1,5 @@
+---
+# vars file for crowd
+
+crowd_catalina: /usr/share/crowd
+crowd_home: /var/lib/crowd
