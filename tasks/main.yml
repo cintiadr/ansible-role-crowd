@@ -10,15 +10,15 @@
     shell=/bin/bash
   tags: crowd
 
-- name: prepare directory
+- name: prepare files
   file:
-    path={{ item }}
-    owner={{ crowd_user }}
-    group={{ crowd_user }}
-    state=directory
-    mode=0755
+    path={{ item.path }}
+    owner={{ item.owner }}
+    group={{ item.group }}
+    mode={{ item.mode }}
+    state={{ item.state }}
   with_items:
-    - "{{ crowd_catalina }}"
+    - { path: "{{ crowd_catalina }}", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0755', state: 'directory' }
   tags: crowd
 
 - name: download package
@@ -36,24 +36,15 @@
 
 - name: copy templates
   template:
-    src="{{ item }}.j2"
-    dest="/{{ item }}"
-    owner={{ crowd_user }}
-    group={{ crowd_user }}
-    mode=0644
+    src="{{ item.template }}.j2"
+    dest="/{{ item.template }}"
+    owner={{ item.owner }}
+    group={{ item.group }}
+    mode={{ item.mode }}
   with_items:
-    - etc/init.d/crowd
-    - usr/share/crowd/apache-tomcat/bin/setenv.sh
-    - usr/share/crowd/apache-tomcat/conf/server.xml
-  tags: crowd
-
-- name: prepare service script
-  file:
-    path=/etc/init.d/crowd
-    owner=root
-    group=root
-    state=file
-    mode=0755
+    - { template: 'etc/init.d/crowd', owner: 'root', group: 'root', mode: '0755' }
+    - { template: 'usr/share/crowd/apache-tomcat/bin/setenv.sh', owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0644' }
+    - { template: 'usr/share/crowd/apache-tomcat/conf/server.xml', owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0644' }
   tags: crowd
 
 - name: enable service
