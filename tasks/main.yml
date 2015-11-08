@@ -8,6 +8,7 @@
     home={{ crowd_home }}
     system=yes
     shell=/bin/bash
+  notify: restart crowd
   tags: crowd
 
 - name: prepare files
@@ -19,6 +20,7 @@
     state={{ item.state }}
   with_items:
     - { path: "{{ crowd_catalina }}", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0755', state: 'directory' }
+  notify: restart crowd
   tags: crowd
 
 - name: download package
@@ -26,12 +28,14 @@
     url={{ crowd_url }}
     dest={{ crowd_archive }}
     sha256sum={{ crowd_sha256 }}
+  notify: restart crowd
   tags: crowd
 
 - name: unarchive package
   shell: tar zxvf {{ crowd_archive }} -C {{ crowd_catalina }} --strip-components=1; chown -Rf {{ crowd_user }}:{{ crowd_user }} {{ crowd_catalina }}
   args:
     creates: "{{ crowd_catalina }}/start_crowd.sh"
+  notify: restart crowd
   tags: crowd
 
 - name: copy templates
@@ -45,6 +49,7 @@
     - { template: 'etc/init.d/crowd', owner: 'root', group: 'root', mode: '0755' }
     - { template: 'usr/share/crowd/apache-tomcat/bin/setenv.sh', owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0644' }
     - { template: 'usr/share/crowd/apache-tomcat/conf/server.xml', owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0644' }
+  notify: restart crowd
   tags: crowd
 
 - name: enable service
