@@ -1,56 +1,139 @@
-Crowd
-==========
+Ansible Role for Crowd
+======================
 
-[![Build
-Status](https://travis-ci.org/pantarei/ansible-role-crowd.svg?branch=master)](https://travis-ci.org/pantarei/ansible-role-crowd)
-[![GitHub
-tag](https://img.shields.io/github/tag/pantarei/ansible-role-crowd.svg)](https://github.com/pantarei/ansible-role-crowd)
-[![GitHub
-license](https://img.shields.io/github/license/pantarei/ansible-role-crowd.svg)](https://github.com/pantarei/ansible-role-crowd)
+[![Build Status](https://travis-ci.org/pantarei/ansible-role-crowd.svg?branch=master)](https://travis-ci.org/pantarei/ansible-role-crowd)
+[![GitHub tag](https://img.shields.io/github/tag/pantarei/ansible-role-crowd.svg)](https://github.com/pantarei/ansible-role-crowd)
+[![GitHub license](https://img.shields.io/github/license/pantarei/ansible-role-crowd.svg)](https://github.com/pantarei/ansible-role-crowd/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/ansible/role/5987.svg)](https://galaxy.ansible.com/detail#/role/5987)
 
-Ansible Role for Crowd Installation.
+Ansible Role for Atlassian Crowd Installation.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role
-should be mentioned here. For instance, if the role uses the EC2 module,
-it may be a good idea to mention in this section that the boto package
-is required.
+This role require Ansible 1.9 or higher.
+
+This role was designed for Ubuntu Server 14.04 LTS.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here,
-including any variables that are in defaults/main.yml, vars/main.yml,
-and any variables that can/should be set via parameters to the role. Any
-variables that are read from other roles and/or the global scope (ie.
-hostvars, group vars, etc.) should be mentioned here as well.
+<table>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">parameter</th>
+<th align="left">required</th>
+<th align="left">default</th>
+<th align="left">choices</th>
+<th align="left">comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">crowd_archive</td>
+<td align="left">yes</td>
+<td align="left">/tmp/atlassian-crowd-2.8.3.tar.gz</td>
+<td align="left"></td>
+<td align="left">Download archive filename for cache during (re)install.</td>
+</tr>
+<tr class="even">
+<td align="left">crowd_catalina</td>
+<td align="left">yes</td>
+<td align="left">/usr/share/crowd</td>
+<td align="left"></td>
+<td align="left">Location for the Crowd installation directory.</td>
+</tr>
+<tr class="odd">
+<td align="left">crowd_home</td>
+<td align="left">yes</td>
+<td align="left">/var/lib/crowd</td>
+<td align="left"></td>
+<td align="left">Location for the Crowd home directory.</td>
+</tr>
+<tr class="even">
+<td align="left">crowd_pass</td>
+<td align="left">yes</td>
+<td align="left">Wa6beegh</td>
+<td align="left"></td>
+<td align="left">Password for Crowd system user.</td>
+</tr>
+<tr class="odd">
+<td align="left">crowd_proxy_name</td>
+<td align="left">no</td>
+<td align="left"><code>null</code></td>
+<td align="left"></td>
+<td align="left">Pass value as <code>proxyName</code> to <a href="https://github.com/pantarei/ansible-role-crowd/blob/master/templates/usr/share/crowd/conf/server.xml.j2">template</a>.</td>
+</tr>
+<tr class="even">
+<td align="left">crowd_scheme</td>
+<td align="left">no</td>
+<td align="left"><code>null</code></td>
+<td align="left"><ul>
+<li><code>null</code></li>
+<li>http</li>
+<li>https</li>
+</ul></td>
+<td align="left">Install Crowd in standalone mode if <code>null</code>, or integrating with Apache using HTTP if <code>http</code>, or integrating with Apache using HTTPS if <code>https</code>.</td>
+</tr>
+<tr class="odd">
+<td align="left">crowd_sha256</td>
+<td align="left">yes</td>
+<td align="left">dabfde01366c1f72d50440e69d38a3a2a5092a4cba525b3987af8d53b11a402c</td>
+<td align="left"></td>
+<td align="left">Download archive sha256 checksum for cache during (re)install.</td>
+</tr>
+<tr class="even">
+<td align="left">crowd_upgrade</td>
+<td align="left">no</td>
+<td align="left"><code>false</code></td>
+<td align="left"><ul>
+<li><code>true</code></li>
+<li><code>false</code></li>
+</ul></td>
+<td align="left">If <code>true</code>, trigger upgrade by stop existing Crowd service, purge existing Crowd installation direcoty before normal tasks.</td>
+</tr>
+<tr class="odd">
+<td align="left">crowd_url</td>
+<td align="left">yes</td>
+<td align="left">https://downloads.atlassian.com/software/crowd/downloads/atlassian-crowd-2.8.3.tar.gz</td>
+<td align="left"></td>
+<td align="left">URL for download archive.</td>
+</tr>
+<tr class="even">
+<td align="left">crowd_user</td>
+<td align="left">yes</td>
+<td align="left">crowd</td>
+<td align="left"></td>
+<td align="left">Username for Crowd system user.</td>
+</tr>
+</tbody>
+</table>
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details
-in regards to parameters that may need to be set for other roles, or
-variables that are used from other roles.
+-   [hswong3i.java](https://galaxy.ansible.com/detail#/role/5971)
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with
-variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+        - { role: hswong3i.java }
+        - { role: hswong3i.crowd, crowd_user: 'crowd', crowd_pass: 'Wa6beegh', crowd_upgrade: 'false' }
 
 License
 -------
 
--   Code released under
-    [MIT](https://github.com/hswong3i/ansible-role-crowd/blob/master/LICENSE)
--   Docs released under [CC BY
-    4.0](http://creativecommons.org/licenses/by/4.0/)
+-   Code released under [MIT](https://github.com/hswong3i/ansible-role-crowd/blob/master/LICENSE)
+-   Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 Author Information
 ------------------
