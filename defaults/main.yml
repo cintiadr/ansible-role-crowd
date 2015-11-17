@@ -4,6 +4,9 @@
 crowd_archive: /tmp/atlassian-crowd-2.8.3.tar.gz
 crowd_catalina: /usr/share/crowd
 crowd_home: /var/lib/crowd
+crowd_jvm_maximum_memory: 1024m
+crowd_jvm_minimum_memory: 512m
+crowd_jvm_support_recommended_args: -Datlassian.plugins.enable.wait=300
 crowd_pass: Wa6beegh
 crowd_proxy_name:
 crowd_scheme:
