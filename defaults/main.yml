@@ -3,6 +3,7 @@
 
 crowd_archive: /tmp/atlassian-crowd-2.8.3.tar.gz
 crowd_catalina: /usr/share/crowd
+crowd_connector_port: 8095
 crowd_home: /var/lib/crowd
 crowd_jvm_maximum_memory: 1024m
 crowd_jvm_minimum_memory: 512m
@@ -10,6 +11,7 @@ crowd_jvm_support_recommended_args: -Datlassian.plugins.enable.wait=300
 crowd_pass: Wa6beegh
 crowd_proxy_name:
 crowd_scheme:
+crowd_server_port: 8020
 crowd_sha256: dabfde01366c1f72d50440e69d38a3a2a5092a4cba525b3987af8d53b11a402c
 crowd_upgrade: false
 crowd_url: https://downloads.atlassian.com/software/crowd/downloads/atlassian-crowd-2.8.3.tar.gz
