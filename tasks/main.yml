@@ -1,5 +1,5 @@
 ---
-# tasks file for crowd
+# tasks file for hswong3i.crowd
 
 - name: stop service if upgrade
   service: name=crowd state=stopped

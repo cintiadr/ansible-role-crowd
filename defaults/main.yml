@@ -1,5 +1,5 @@
 ---
-# defaults file for crowd
+# defaults file for hswong3i.crowd
 
 crowd_archive: /tmp/atlassian-crowd-2.8.3.tar.gz
 crowd_catalina: /usr/share/crowd
