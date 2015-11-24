@@ -75,3 +75,14 @@
   service: name=crowd enabled=yes
   notify: restart crowd
   tags: hswong3i.crowd
+
+- name: enable incomming connection
+  ufw:
+    to_port={{ item }}
+    proto=tcp
+    rule=allow
+  with_items:
+    - "{{ crowd_connector_port }}"
+    - "{{ crowd_server_port }}"
+  notify: restart crowd
+  tags: hswong3i.crowd
