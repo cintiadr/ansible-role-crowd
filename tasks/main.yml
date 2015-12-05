@@ -20,12 +20,20 @@
   notify: restart crowd
   tags: hswong3i.crowd
 
-- name: create system user
+- name: apt-get install
+  apt:
+    name="{{ item }}"
+    state=latest
+  with_items:
+    - ufw
+  notify: restart crowd
+  tags: hswong3i.crowd
+
+- name: create user
   user:
     name={{ crowd_user }}
     password={{ crowd_pass }}
     home={{ crowd_home }}
-    system=yes
     shell=/bin/bash
   notify: restart crowd
   tags: hswong3i.crowd
