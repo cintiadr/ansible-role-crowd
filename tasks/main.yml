@@ -32,7 +32,7 @@
 - name: create user
   user:
     name={{ crowd_user }}
-    password={{ crowd_pass }}
+    password={{ crowd_pass | password_hash('sha512') }}
     home={{ crowd_home }}
     shell=/bin/bash
   notify: restart crowd
