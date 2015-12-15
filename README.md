@@ -58,48 +58,55 @@ Role Variables
 <td align="left">Crowd Apache Tomcat connector port.</td>
 </tr>
 <tr class="even">
+<td align="left">crowd_hash_salt</td>
+<td align="left">yes</td>
+<td align="left"><a href="https://github.com/pantarei/ansible-role-crowd/blob/master/defaults/main.yml">defaults/main.yml</a></td>
+<td align="left"></td>
+<td align="left">Specific password hash salt for sha512.</td>
+</tr>
+<tr class="odd">
 <td align="left">crowd_home</td>
 <td align="left">yes</td>
 <td align="left">/var/lib/crowd</td>
 <td align="left"></td>
 <td align="left">Location for the Crowd home directory.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">crowd_jvm_maximum_memory</td>
 <td align="left">yes</td>
 <td align="left">1024m</td>
 <td align="left"></td>
 <td align="left">Crowd JVM maximum memory usage.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">crowd_jvm_minimum_memory</td>
 <td align="left">yes</td>
 <td align="left">512m</td>
 <td align="left"></td>
 <td align="left">Crowd JVM minimum memory usage.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">crowd_jvm_support_recommended_args</td>
 <td align="left">no</td>
 <td align="left"><a href="https://github.com/pantarei/ansible-role-crowd/blob/master/defaults/main.yml">defaults/main.yml</a></td>
 <td align="left"></td>
 <td align="left">Atlassian Support recommended JVM arguments.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">crowd_pass</td>
 <td align="left">yes</td>
 <td align="left">Wa6beegh</td>
 <td align="left"></td>
 <td align="left">Password for Crowd system user.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">crowd_proxy_name</td>
 <td align="left">no</td>
 <td align="left"><code>null</code></td>
 <td align="left"></td>
 <td align="left">Pass value as <code>proxyName</code> to <a href="https://github.com/pantarei/ansible-role-crowd/blob/master/templates/usr/share/crowd/conf/server.xml.j2">template</a>.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">crowd_scheme</td>
 <td align="left">no</td>
 <td align="left"><code>null</code></td>
@@ -110,21 +117,21 @@ Role Variables
 </ul></td>
 <td align="left">Install Crowd in standalone mode if <code>null</code>, or integrating with Apache using HTTP if <code>http</code>, or integrating with Apache using HTTPS if <code>https</code>.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">crowd_server_port</td>
 <td align="left">yes</td>
 <td align="left">8020</td>
 <td align="left"></td>
 <td align="left">Crowd Apache Tomcat server port.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">crowd_sha256</td>
 <td align="left">yes</td>
 <td align="left"><a href="https://github.com/pantarei/ansible-role-crowd/blob/master/defaults/main.yml">defaults/main.yml</a></td>
 <td align="left"></td>
 <td align="left">Download archive sha256 checksum for cache during (re)install.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">crowd_upgrade</td>
 <td align="left">no</td>
 <td align="left"><code>false</code></td>
@@ -134,14 +141,14 @@ Role Variables
 </ul></td>
 <td align="left">If <code>true</code>, trigger upgrade by stop existing Crowd service, purge existing Crowd installation direcoty before normal tasks.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">crowd_url</td>
 <td align="left">yes</td>
 <td align="left"><a href="https://github.com/pantarei/ansible-role-crowd/blob/master/defaults/main.yml">defaults/main.yml</a></td>
 <td align="left"></td>
 <td align="left">URL for download archive.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">crowd_user</td>
 <td align="left">yes</td>
 <td align="left">crowd</td>
