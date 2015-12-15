@@ -4,6 +4,7 @@
 crowd_archive: /tmp/atlassian-crowd-2.8.3.tar.gz
 crowd_catalina: /usr/share/crowd
 crowd_connector_port: 8095
+crowd_hash_salt: 7a19759dc774f9accbe51540e80e155f31290517417fd6960a27f891877dd272
 crowd_home: /var/lib/crowd
 crowd_jvm_maximum_memory: 1024m
 crowd_jvm_minimum_memory: 512m
