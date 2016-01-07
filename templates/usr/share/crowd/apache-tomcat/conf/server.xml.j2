@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- {{ ansible_managed }} -->
 <Server port="{{ crowd_server_port }}" shutdown="SHUTDOWN">
     <Service name="Catalina">
         <Connector URIEncoding="UTF-8" acceptCount="100" connectionTimeout="20000" disableUploadTimeout="true" enableLookups="false" maxHttpHeaderSize="8192" maxThreads="150" minSpareThreads="25" port="{{ crowd_connector_port }}" redirectPort="8443" useBodyEncodingForURI="true"{% if crowd_proxy_name and crowd_scheme in ["http", "https"] %} proxyName="{{ crowd_proxy_name }}"{% if crowd_scheme == "http" %} scheme="http" proxyPort="80"{% elif crowd_scheme == "https" %} scheme="https" proxyPort="443" secure="true"{% endif %}{% endif %}/>
@@ -10,7 +11,7 @@
             </Host>
         </Engine>
     </Service>
-    <Listener SSLEngine="on" className="org.apache.catalina.core.AprLifecycleListener"/>
+    <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on"/>
     <Listener className="org.apache.catalina.core.JasperListener"/>
     <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener"/>
     <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"/>
