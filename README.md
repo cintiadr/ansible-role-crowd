@@ -62,7 +62,7 @@ Role Variables
 <td align="left">no</td>
 <td align="left"><code>null</code></td>
 <td align="left"></td>
-<td align="left">Pass value as <code>path</code> to <a href="https://github.com/pantarei/ansible-role-crowd/blob/master/templates/usr/share/crowd/conf/server.xml.j2">template</a>.</td>
+<td align="left">Pass value as <code>path</code> to <a href="https://github.com/pantarei/ansible-role-crowd/blob/master/templates/usr/share/crowd/apache-tomcat/conf/server.xml.j2">template</a>.</td>
 </tr>
 <tr class="odd">
 <td align="left">crowd_hash_salt</td>
