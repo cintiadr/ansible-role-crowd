@@ -15,7 +15,7 @@ crowd.tomcat.connector.port=8095
 crowd.tomcat.shutdown.port=8020
 
 # Crowd context root
-crowd.url=http://localhost:8095{{ crowd_context_path }}
+crowd.url=http://localhost:8095{{ crowd_context_path or '' }}
 
 # Demo context root
 demo.url=http://localhost:8095/demo
