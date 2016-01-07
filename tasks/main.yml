@@ -94,7 +94,7 @@
   tags: hswong3i.crowd
 
 - name: update build with ant
-  shell: "cd {{ crowd_catalina }}; ./build.sh"
+  shell: cd {{ crowd_catalina }}; ./build.sh; chown -Rf {{ crowd_user }}:{{ crowd_user }} {{ crowd_catalina }}
   register: build_result
   changed_when: build_result.rc != 0
   notify: restart crowd
