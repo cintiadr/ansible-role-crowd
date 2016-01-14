@@ -2,9 +2,9 @@ Ansible Role for Crowd
 ======================
 
 [![Build Status](https://travis-ci.org/pantarei/ansible-role-crowd.svg?branch=master)](https://travis-ci.org/pantarei/ansible-role-crowd)
- [![GitHub tag](https://img.shields.io/github/tag/pantarei/ansible-role-crowd.svg)](https://github.com/pantarei/ansible-role-crowd)
- [![GitHub license](https://img.shields.io/github/license/pantarei/ansible-role-crowd.svg)](https://github.com/pantarei/ansible-role-crowd/blob/master/LICENSE)
- [![Ansible Role](https://img.shields.io/ansible/role/5987.svg)](https://galaxy.ansible.com/detail#/role/5987)
+[![GitHub tag](https://img.shields.io/github/tag/pantarei/ansible-role-crowd.svg)](https://github.com/pantarei/ansible-role-crowd)
+[![GitHub license](https://img.shields.io/github/license/pantarei/ansible-role-crowd.svg)](https://github.com/pantarei/ansible-role-crowd/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/ansible/role/5987.svg)](https://galaxy.ansible.com/detail#/role/5987)
 
 Ansible Role for Atlassian Crowd Installation.
 
