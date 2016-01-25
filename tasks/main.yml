@@ -22,10 +22,10 @@
 
 - name: apt-get install
   apt:
-    name="{{ item }}"
-    state=latest
+    name={{ item.name }}
+    state={{ item.state }}
   with_items:
-    - ufw
+    - { name: 'ufw', state: 'latest' }
   notify: restart crowd
   tags: hswong3i.crowd
 
@@ -120,11 +120,11 @@
 
 - name: enable incomming connection
   ufw:
-    to_port={{ item }}
-    proto=tcp
-    rule=allow
+    to_port={{ item.to_port }}
+    proto={{ item.proto }}
+    rule={{ item.rule }}
   with_items:
-    - "{{ crowd_connector_port }}"
-    - "{{ crowd_server_port }}"
+    - { to_port: "{{ crowd_connector_port }}", proto: 'tcp', rule: 'allow' }
+    - { to_port: "{{ crowd_server_port }}", proto: 'tcp', rule: 'allow' }
   notify: restart crowd
   tags: hswong3i.crowd
