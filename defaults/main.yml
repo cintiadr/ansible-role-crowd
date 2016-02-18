@@ -1,8 +1,9 @@
 ---
 # defaults file for hswong3i.crowd
 
-crowd_archive: /tmp/atlassian-crowd-2.8.3.tar.gz
+crowd_archive: atlassian-crowd-2.8.3.tar.gz
 crowd_catalina: /usr/share/crowd
+crowd_checksum: "sha256:dabfde01366c1f72d50440e69d38a3a2a5092a4cba525b3987af8d53b11a402c"
 crowd_connector_port: 8095
 crowd_context_path: ~
 crowd_hash_salt: neib5quiwier6Quo
@@ -14,7 +15,5 @@ crowd_pass: Wa6beegh
 crowd_proxy_name: ~
 crowd_scheme: ~
 crowd_server_port: 8020
-crowd_sha256: dabfde01366c1f72d50440e69d38a3a2a5092a4cba525b3987af8d53b11a402c
-crowd_upgrade: false
-crowd_url: https://downloads.atlassian.com/software/crowd/downloads/atlassian-crowd-2.8.3.tar.gz
+crowd_url: "https://downloads.atlassian.com/software/crowd/downloads/{{ crowd_archive }}"
 crowd_user: crowd

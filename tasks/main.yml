@@ -1,25 +1,6 @@
 ---
 # tasks file for hswong3i.crowd
 
-- name: stop service if upgrade
-  service: name=crowd state=stopped
-  when: crowd_upgrade == true
-  notify: restart crowd
-  tags: hswong3i.crowd
-
-- name: remove legacy binary if upgrade
-  file:
-    path={{ item.path }}
-    owner={{ item.owner }}
-    group={{ item.group }}
-    mode={{ item.mode }}
-    state={{ item.state }}
-  with_items:
-    - { path: "{{ crowd_catalina }}", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0755', state: 'absent' }
-  when: crowd_upgrade == true
-  notify: restart crowd
-  tags: hswong3i.crowd
-
 - name: apt-get install
   apt:
     name={{ item.name }}
@@ -53,13 +34,12 @@
 - name: download package
   get_url:
     url={{ crowd_url }}
-    dest={{ crowd_archive }}
-    sha256sum={{ crowd_sha256 }}
-  notify: restart crowd
+    dest="/tmp/{{ crowd_archive }}"
+    checksum={{ crowd_checksum }}
   tags: hswong3i.crowd
 
 - name: unarchive package
-  shell: tar zxvf {{ crowd_archive }} -C {{ crowd_catalina }} --strip-components=1; chown -Rf {{ crowd_user }}:{{ crowd_user }} {{ crowd_catalina }}
+  shell: tar zxvf /tmp/{{ crowd_archive }} -C {{ crowd_catalina }} --strip-components=1; chown -Rf {{ crowd_user }}:{{ crowd_user }} {{ crowd_catalina }}
   args:
     creates: "{{ crowd_catalina }}/start_crowd.sh"
   notify: restart crowd
