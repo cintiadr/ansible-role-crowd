@@ -3,8 +3,8 @@
 
 - name: apt-get install
   apt:
-    name={{ item.name }}
-    state={{ item.state }}
+    name="{{ item.name }}"
+    state="{{ item.state }}"
   with_items:
     - { state: 'latest', name: 'ufw' }
   notify: restart crowd
@@ -12,20 +12,20 @@
 
 - name: create user
   user:
-    name={{ crowd_user }}
-    password={{ crowd_pass | password_hash('sha512', crowd_hash_salt) }}
-    home={{ crowd_home }}
+    name="{{ crowd_user }}"
+    password="{{ crowd_pass | password_hash('sha512', crowd_hash_salt) }}"
+    home="{{ crowd_home }}"
     shell=/bin/bash
   notify: restart crowd
   tags: hswong3i.crowd
 
 - name: prepare files
   file:
-    path={{ item.path }}
-    owner={{ item.owner }}
-    group={{ item.group }}
-    mode={{ item.mode }}
-    state={{ item.state }}
+    path="{{ item.path }}"
+    owner="{{ item.owner }}"
+    group="{{ item.group }}"
+    mode="{{ item.mode }}"
+    state="{{ item.state }}"
   with_items:
     - { path: "{{ crowd_catalina }}", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0755', state: 'directory' }
   notify: restart crowd
@@ -33,9 +33,9 @@
 
 - name: download package
   get_url:
-    url={{ crowd_url }}
+    url="{{ crowd_url }}"
     dest="/tmp/{{ crowd_archive }}"
-    checksum={{ crowd_checksum }}
+    checksum="{{ crowd_checksum }}"
   tags: hswong3i.crowd
 
 - name: unarchive package
@@ -47,11 +47,11 @@
 
 - name: remove stuff due to custom context path
   file:
-    path={{ item.path }}
-    owner={{ item.owner }}
-    group={{ item.group }}
-    mode={{ item.mode }}
-    state={{ item.state }}
+    path="{{ item.path }}"
+    owner="{{ item.owner }}"
+    group="{{ item.group }}"
+    mode="{{ item.mode }}"
+    state="{{ item.state }}"
   with_items:
     - { path: "{{ crowd_catalina }}/apache-tomcat/webapps/ROOT", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0755', state: 'absent' }
     - { path: "{{ crowd_catalina }}/apache-tomcat/conf/Catalina/localhost/crowd.xml", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0644', state: 'absent' }
@@ -60,11 +60,11 @@
 
 - name: copy templates
   template:
-    src={{ item.src }}
-    dest={{ item.dest }}
-    owner={{ item.owner }}
-    group={{ item.group }}
-    mode={{ item.mode }}
+    src="{{ item.src }}"
+    dest="{{ item.dest }}"
+    owner="{{ item.owner }}"
+    group="{{ item.group }}"
+    mode="{{ item.mode }}"
   with_items:
     - { src: 'usr/share/crowd/build.properties.j2', dest: "{{ crowd_catalina }}/build.properties", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0644' }
   register: build_properties_result
@@ -81,11 +81,11 @@
 
 - name: copy templates
   template:
-    src={{ item.src }}
-    dest={{ item.dest }}
-    owner={{ item.owner }}
-    group={{ item.group }}
-    mode={{ item.mode }}
+    src="{{ item.src }}"
+    dest="{{ item.dest }}"
+    owner="{{ item.owner }}"
+    group="{{ item.group }}"
+    mode="{{ item.mode }}"
   with_items:
     - { src: 'etc/init.d/crowd.j2', dest: '/etc/init.d/crowd', owner: 'root', group: 'root', mode: '0755' }
     - { src: 'usr/share/crowd/apache-tomcat/bin/setenv.sh.j2', dest: "{{ crowd_catalina }}/apache-tomcat/bin/setenv.sh", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: '0644' }
@@ -100,9 +100,9 @@
 
 - name: enable incomming connection
   ufw:
-    to_port={{ item.to_port }}
-    proto={{ item.proto }}
-    rule={{ item.rule }}
+    to_port="{{ item.to_port }}"
+    proto="{{ item.proto }}"
+    rule="{{ item.rule }}"
   with_items:
     - { to_port: "{{ crowd_connector_port }}", proto: 'tcp', rule: 'allow' }
     - { to_port: "{{ crowd_server_port }}", proto: 'tcp', rule: 'allow' }
