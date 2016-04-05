@@ -109,8 +109,8 @@
 
 - name: enable service
   service:
-    name: crowd
-    enabled: yes
+    name: "crowd"
+    enabled: "yes"
   notify: restart crowd
   tags: hswong3i.crowd
 
