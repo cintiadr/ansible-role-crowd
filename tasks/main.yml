@@ -1,15 +1,6 @@
 ---
 # tasks file for hswong3i.crowd
 
-- name: apt-get install
-  apt:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-  with_items:
-    - { state: "latest", name: "ufw" }
-  notify: restart crowd
-  tags: hswong3i.crowd
-
 - name: create group
   group:
     name: "{{ crowd_user }}"
@@ -111,16 +102,5 @@
   service:
     name: "crowd"
     enabled: "yes"
-  notify: restart crowd
-  tags: hswong3i.crowd
-
-- name: enable incomming connection
-  ufw:
-    to_port: "{{ item.to_port }}"
-    proto: "{{ item.proto }}"
-    rule: "{{ item.rule }}"
-  with_items:
-    - { to_port: "{{ crowd_connector_port }}", proto: "tcp", rule: "allow" }
-    - { to_port: "{{ crowd_server_port }}", proto: "tcp", rule: "allow" }
   notify: restart crowd
   tags: hswong3i.crowd
