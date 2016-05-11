@@ -4,7 +4,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - role: ansible-role-crowd
-      crowd_hash_salt: "neib5quiwier6Quo"
-      crowd_pass: "Wa6beegh"
-      crowd_user: "crowd"
+    - hswong3i.java
+    - ansible-role-crowd
