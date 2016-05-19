@@ -80,7 +80,7 @@ Role Variables
 <tr class="odd">
 <td>crowd_hash_salt</td>
 <td>yes</td>
-<td><a href="https://github.com/pantarei/ansible-role-crowd/blob/master/defaults/main.yml">defaults/main.yml</a></td>
+<td></td>
 <td></td>
 <td>Specific password hash salt for sha512.</td>
 </tr>
@@ -115,7 +115,7 @@ Role Variables
 <tr class="even">
 <td>crowd_pass</td>
 <td>yes</td>
-<td>Wa6beegh</td>
+<td></td>
 <td></td>
 <td>Password for Crowd system user.</td>
 </tr>
@@ -161,7 +161,7 @@ Role Variables
 <tr class="even">
 <td>crowd_user</td>
 <td>yes</td>
-<td>crowd</td>
+<td></td>
 <td></td>
 <td>Username for Crowd system user.</td>
 </tr>
@@ -176,9 +176,12 @@ No additional role dependencies.
 Example Playbook
 ----------------
 
-    - hosts: servers
+    - hosts: all
       roles:
-        - { role: hswong3i.crowd }
+        - role: hswong3i.crowd
+          crowd_hash_salt: "neib5quiwier6Quo"
+          crowd_pass: "Wa6beegh"
+          crowd_user: "crowd"
 
 License
 -------
