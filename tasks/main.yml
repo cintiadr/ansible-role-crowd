@@ -5,6 +5,7 @@
   group:
     name: "{{ crowd_user }}"
     gid: "{{ crowd_gid | default(None) or omit }}"
+  when: crowd_pass is string and crowd_hash_salt is string
   notify: restart crowd
   tags: hswong3i.crowd
 
@@ -16,6 +17,7 @@
     group: "{{ crowd_user }}"
     uid: "{{ crowd_uid | default(None) or omit }}"
     shell: "/bin/bash"
+  when: crowd_pass is string and crowd_hash_salt is string
   notify: restart crowd
   tags: hswong3i.crowd
 
