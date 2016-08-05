@@ -23,13 +23,13 @@
 
 - name: prepare files
   file:
-    path: "{{ item.path }}"
+    dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
     state: "{{ item.state }}"
   with_items:
-    - { path: "{{ crowd_catalina }}", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0755", state: "directory" }
+    - { dest: "{{ crowd_catalina }}", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0755", state: "directory" }
   notify: restart crowd
   tags: hswong3i.crowd
 
@@ -51,14 +51,14 @@
 
 - name: remove stuff due to custom context path
   file:
-    path: "{{ item.path }}"
+    dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
     state: "{{ item.state }}"
   with_items:
-    - { path: "{{ crowd_catalina }}/apache-tomcat/webapps/ROOT", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0755", state: "absent" }
-    - { path: "{{ crowd_catalina }}/apache-tomcat/conf/Catalina/localhost/crowd.xml", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0644", state: "absent" }
+    - { dest: "{{ crowd_catalina }}/apache-tomcat/webapps/ROOT", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0755", state: "absent" }
+    - { dest: "{{ crowd_catalina }}/apache-tomcat/conf/Catalina/localhost/crowd.xml", owner: "{{ crowd_user }}", group: "{{ crowd_user }}", mode: "0644", state: "absent" }
   notify: restart crowd
   tags: hswong3i.crowd
 
