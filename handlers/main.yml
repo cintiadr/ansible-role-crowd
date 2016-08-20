@@ -3,5 +3,7 @@
 
 - name: restart crowd
   service:
-    name: "crowd"
-    state: "restarted"
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { name: "crowd", state: "restarted" }

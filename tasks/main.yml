@@ -35,9 +35,11 @@
 
 - name: download package
   get_url:
-    url: "{{ crowd_url }}"
-    dest: "/tmp/{{ crowd_archive }}"
-    checksum: "{{ crowd_checksum }}"
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    checksum: "{{ item.checksum }}"
+  with_items:
+    - { url: "{{ crowd_url }}", dest: "/tmp/{{ crowd_archive }}", checksum: "{{ crowd_checksum }}" }
   tags: hswong3i.crowd
 
 - name: unarchive package
@@ -102,7 +104,9 @@
 
 - name: enable service
   service:
-    name: "crowd"
-    enabled: "yes"
+    name: "{{ item.name }}"
+    enabled: "{{ item.enabled }}"
+  with_items:
+    - { name: "crowd", enabled: "yes" }
   notify: restart crowd
   tags: hswong3i.crowd
