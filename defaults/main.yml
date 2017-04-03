@@ -9,9 +9,9 @@ crowd_uid: ~
 crowd_user: ~
 
 # optional variables with default
-crowd_archive: "atlassian-crowd-2.11.1.tar.gz"
+crowd_archive: "atlassian-crowd-2.11.2.tar.gz"
 crowd_catalina: "/usr/share/crowd"
-crowd_checksum: "sha256:472b9b4884591e87dec4ad4412dd2fc01a36e5eb2347ef7b3db9b16bcb4deb89"
+crowd_checksum: "sha256:f6b539e100b09077e7448b3008364408d9437dd0f084ddd75fc7302549226c14"
 crowd_connector_port: "8095"
 crowd_context_path: ~
 crowd_home: "/var/lib/crowd"
